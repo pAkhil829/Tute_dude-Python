@@ -1,0 +1,43 @@
+#Student Grades Program
+
+student_grades = {}
+valid_grades = {"A", "B", "C", "D", "F"}
+
+while True:
+    print("\nOptions:")
+    print("1. Add new student and grade")
+    print("2. Update student's grade")
+    print("3. Print all student grades")
+    print("4. Exit")
+    choice = input("Enter choice (1-4): ")
+
+    if choice == "1":
+        name = input("Enter student name: ")
+        grade = input("Enter student grade (A/B/C/D/F): ").strip().upper()
+        while grade not in valid_grades:
+            grade = input("Invalid! Enter grade (A/B/C/D/F): ").strip().upper()
+        if name in student_grades:
+            print("Student already exists!")
+        else:
+            student_grades[name] = grade
+            print("Student added.")
+    elif choice == "2":
+        name = input("Enter student name to update: ")
+        if name in student_grades:
+            grade = input("Enter new grade (A/B/C/D/F): ").strip().upper()
+            while grade not in valid_grades:
+                grade = input("Invalid! Enter grade (A/B/C/D/F): ").strip().upper()
+            student_grades[name] = grade
+            print("Grade updated.")
+        else:
+            print("Student not found.")
+    elif choice == "3":
+        if student_grades:
+            for name, grade in student_grades.items():
+                print(f"{name}: {grade}")
+        else:
+            print("No students found.")
+    elif choice == "4":
+        break
+    else:
+        print("Invalid choice.")
